@@ -24,22 +24,24 @@
 
 </head>
 <body>
-    <h1 id="mainHeader"></h1>
     <header>
         <nav>
             <div class="nav_container">
                 <ul>
                     <li class="logo">
-                        <a href="index.html">&lt; Powered By Coffee &gt;HTML Reference</a>
+                        <a href="index.html">Administrative Dashboard</a>
                     </li>
                     <li>
                         <a style="margin-left:5px;" href="../index.html">Home</a>
                     </li>
                     <li class="active">
-                        <a href="#">About</a>
+                        <a href="#">Add</a>
                     </li>
                     <li>
-                        <a href="../contact.html">Contact</a>
+                        <a href="#">Delete</a>
+                    </li>
+                    <li>
+                        <a href="#">Update</a>
                     </li>
                     <li>
                         <input style="margin-left:30px;" type="text" id="s_tagName" placeholder="Search" onkeydown="search_by_enter()" />
@@ -60,9 +62,6 @@
     var start = queryString.indexOf("=");
     var end = queryString.indexOf("&");
     var tag = queryString.slice(start + 1, end);
-
-
-    document.getElementById("mainHeader").innerHTML = "Main Info" + tag;
 
 
     var descriptionRef = new Firebase("https://poweredbycoffee1.firebaseio.com/description/" + tag);
@@ -140,29 +139,32 @@
         field.value = data.chrome;
 
         field = document.getElementById("safariBrowser");
-        field.value = data.opera;
+        field.value = data.safari;
 
         field = document.getElementById("operaBrowser");
-        field.value = data.safari;
+        field.value = data.opera;
     });
 
     function add_tag() {
+
+
         var descriptionRef_add = new Firebase("https://poweredbycoffee1.firebaseio.com/description/");
         var browserRef_add = new Firebase("https://poweredbycoffee1.firebaseio.com/browser/");
         var exampleRef_add = new Firebase("https://poweredbycoffee1.firebaseio.com/example/");
+	var categoryRef_add = new Firebase("https://poweredbycoffee1.firebaseio.com/category/");
 
         var tagName = $('#tagName').val();
         var tagDescriptionShort = $('#tagDescriptionShort').val();
         var tagDescriptionLong = $('#tagDescriptionLong').val();
         var tagExampleCode = $('#tagExampleCode').val();
         var tagExampleRaw = $('#tagExampleRaw').val();
-	var tagAttributes = $('$tagAttributes').val();
+	var tagAttributes = $('#tagAttributes').val();
         var ieBrowser = $('#ieBrowser').val();
         var firefoxBrowser = $('#firefoxBrowser').val();
         var chromeBrowser = $('#chromeBrowser').val();
         var safariBrowser = $('#safariBrowser').val();
         var operaBrowser = $('#operaBrowser').val();
-
+	var tagCategory = $('#tagCategory').val();
 
 
         descriptionRef_add.child(tagName).set({
@@ -170,6 +172,9 @@
             long_description: tagDescriptionLong
         });
 
+	categoryRef.child(tagCategory).push({
+	    name: tagName
+	});
 
         browserRef_add.child(tagName).set({
             internet_explorer: ieBrowser,
@@ -331,8 +336,11 @@
             </li>
             </ul>
             <input  type="submit" id="submit_add" name="submit_add" value="Add Tag"><br><br>
-            <button type="submit" formaction="./index.html">Go To Admin Dashboard</button>
-        </form>
+
+	</form>   
+<form action="./index.html">         
+<input type="submit" value="Go To Admin Dashboard">
+</form>
     </div>
 <br><br>
     <footer>
