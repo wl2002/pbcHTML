@@ -60,8 +60,8 @@
         <br />
         <p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Insert New Tag</p>
 
-        <p class="sub-label">Main Info</p>
         <form method="post" onsubmit="add_tag()">
+            <p class="sub-label">Main Info</p>
             <ul class="input_admin">
                 <li>
                     <label for="tagName">Tag Name:</label>
@@ -162,6 +162,21 @@
             <input type="submit" id="submit_add" name="submit_add" value="Add Tag"><br><br>
 </form>
         <br><br>
+
+        <p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Add Attribute</p>
+        <form method="post" onsubmit="add_attribute()">
+            <ul class="input_admin">
+                <li>
+                    <label for="attributeName">Attribute Name:</label>
+                    <input type="text" id="attributeName" name="attributeName" placeholder="accesskey, color, bgcolor"><br><br>
+
+                    <label for="attributeDescription">Description:</label>
+                    <input type="text" id="attributeDescription" name="attributeDescription" placeholder="Description here"><br><br>
+                </li>
+            </ul>
+            <input type="submit" id="submit_attribute" name="submit_attribute"><br><br>
+        </form>
+
         <p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Delete Tag</p>
         <form method="post" onsubmit="delete_tag()">
             <ul class="input_admin">
@@ -177,27 +192,14 @@
         <form method="get" action="admin_update.html">
             <ul class="input_admin">
                 <li>
-                    <label for="d_tagName">Tag Name:</label>
+                    <label for="u_tagName">Tag Name:</label>
                     <input type="text" id="u_tagName" name="tag" placeholder="br, table, form, etc."><br><br>
                 </li>
             </ul>
             <input type="submit" id="submit_update" name="submit_update"><br><br>
         </form>
         
-<p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Add Attribute</p>
 
-        <form method="post" onsubmit="add_attribute()">
-            <ul class="input_admin">
-                <li>
-                    <label for="attributeName">Attribute Name:</label>
-                    <input type="text" id="attributeName" name="attributeName" placeholder="accesskey, color, bgcolor"><br><br>
-
-                    <label for="attributeDescription">Description:</label>
-                    <input type="text" id="attributeDescription" name="attributeDescription" placeholder="Description here"><br><br>
-                </li>
-            </ul>
-            <input type="submit" id="submit_attribute" name="submit_attribute"><br><br>
-        </form>
         <script>
 
 
@@ -303,15 +305,23 @@
             }
 
             function delete_tag() {
-  
-                var d_tagName = $('#d_tagName').val();
-                if (confirm('Do you want to delete this tag <' + d_tagName + '>?')) {
-                descriptionRef.child(d_tagName).set(null);
-                browserRef.child(d_tagName).set(null);
-                exampleRef.child(d_tagName).set(null);
 
-                alert("Deleted " + d_tagName);
-                }
+                var d_tagName = $('#d_tagName').val();
+
+                descriptionRef.child(d_tagName).once("value", function (snapshot) {
+
+                    if (snapshot.val() === null) {
+                        alert("This Tag <" + d_tagName + "> does not exist!")
+                    }
+                    else {
+                        if (confirm('Do you want to delete this tag <' + d_tagName + '>?')) {
+                            descriptionRef.child(d_tagName).set(null);
+                            browserRef.child(d_tagName).set(null);
+                            exampleRef.child(d_tagName).set(null);
+                            alert("Deleted " + d_tagName);
+                        }
+                    }
+                });
             }
 
 
