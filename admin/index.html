@@ -183,6 +183,21 @@
             </ul>
             <input type="submit" id="submit_update" name="submit_update"><br><br>
         </form>
+        
+<p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Add Attribute</p>
+
+        <form method="post" onsubmit="add_attribute()">
+            <ul class="input_admin">
+                <li>
+                    <label for="attributeName">Attribute Name:</label>
+                    <input type="text" id="attributeName" name="attributeName" placeholder="accesskey, color, bgcolor"><br><br>
+
+                    <label for="attributeDescription">Description:</label>
+                    <input type="text" id="attributeDescription" name="attributeDescription" placeholder="Description here"><br><br>
+                </li>
+            </ul>
+            <input type="submit" id="submit_attribute" name="submit_attribute"><br><br>
+        </form>
         <script>
 
 
@@ -192,9 +207,18 @@
             var exampleRef = dataRef.child("example");
             var attributeRef = dataRef.child("attribute");
             var categoryRef = dataRef.child("category");
+            var attributeDescriptionRef = dataRef.child("attribute_description");
 
-            var dataRefd = new Firebase("https://poweredbycoffee1.firebaseio.com/description");
 
+            function add_attribute() {
+                var attributeName = $('#attributeName').val();
+                var attributeDescription = $('#attributeDescription').val();
+
+                attributeDescriptionRef.child(attributeName).set({
+                    description: attributeDescription
+		});
+
+            }
 
             function add_tag() {
 
