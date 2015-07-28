@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add, Edit, Delete Tag</title>
+    <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src="../js/search.js" type="text/javascript"></script>
+
+    <link href="../css/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../img/icon2.ico" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="HTML Reference Website" />
+    <meta name="author" content="PoweredByCoffee" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav_container">
+                <ul>
+                    <li class="logo">
+                        <a href="index.html">&lt; Powered By Coffee &gt;HTML Reference</a>
+                    </li>
+                    <li>
+                        <a style="margin-left:5px;" href="../index.html">Home</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="../contact.html">Contact</a>
+                    </li>
+                    <li>
+                        <input style="margin-left:30px;" type="text" id="s_tagName" placeholder="Search" onkeydown="search_by_enter()" />
+                        <button id="searchBut" class="goButton" value="submit" onclick="search_tag()"> Go </button>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </nav>
+    </header>
+
+    <div class="outer_container" id="admin_page">
+        <h1>Add, Edit, or Delete Tag</h1>
+        <p>This page allows you to add a new tag to the database that is on Firebase website. As an admin,
+        you can also edit a tag that might be incorrect or needs extra information to be added. Also, you can
+        to delete a tag from the database.</p>
+        <br />
+        <p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Insert New Tag</p>
+
+        <p class="sub-label">Main Info</p>
+        <form method="post" onsubmit="add_tag()">
+            <ul class="input_admin">
+                <li>
+                    <label for="tagName">Tag Name:</label>
+                    <input type="text" id="tagName" placeholder="br, table, form, etc.">
+                    <br>
+                    <br>
+                </li>
+                <li>
+                    <label for="tagDescriptionShort">Tag Description (Short):</label>
+                    <input type="text" id="tagDescriptionShort" placeholder="type description here">
+                    <br>
+                    <br>
+                </li>
+                <li>
+                    <label for="tagDescriptionLong">Tag Description (Long):</label>
+                    <textarea id="tagDescriptionLong" rows="5" cols="50" placeholder="Type long description here"></textarea>
+                    <br>
+                    <br>
+                </li>
+                <li>
+                    <label for="tagExampleCode">Tag Example (html code here):</label>
+                    <textarea id="tagExampleCode" rows="5" cols="50" placeholder="Type HTML code here"></textarea>
+                    <br>
+                    <br>
+                </li>
+                <li>
+                    <label for="tagExampleRaw">Tag Example (html formatted):</label>
+                    <textarea id="tagExampleRaw" rows="5" cols="50" placeholder="Type HTML code for browser ouput"></textarea>
+                    <br>
+                    <br>
+                </li>
+                <li>
+                    <label for="tagAttributes">Attribute (comma seperate):</label>
+                    <input type="text" id="tagAttributes" placeholder="global, color, bgcolor, etc">
+                </li>
+                </ul>
+            <br>
+            <br>
+            <p class="sub-label">Browser Support Section</p>
+
+            <ul class="input_admin">
+                <li>
+                    <label for="ieBrowser">Internet Explorer:</label>
+                    <input type="text" id="ieBrowser" placeholder="Yes/No or Number">
+                    <br>
+                    <br>
+                </li>
+                <li>
+                    <label for="firefoxBrowser">Firefox:</label>
+                    <input type="text" id="firefoxBrowser" placeholder="Yes/No or Number">
+                    <br>
+                    <br>
+                </li>
+                <li>
+                    <label for="chromeBrowser">Chrome:</label>
+                    <input type="text" id="chromeBrowser" placeholder="Yes/No or Number">
+                    <br>
+                    <br>
+                </li>
+                <li>
+                    <label for="safariBrowser">Safari:</label>
+                    <input type="text" id="safariBrowser" placeholder="Yes/No or Number">
+                    <br>
+                    <br>
+                </li>
+                <li>
+                    <label for="operaBrowser">Opera:</label>
+                    <input type="text" id="operaBrowser" placeholder="Yes/No or Number">
+                    <br>
+                    <br>
+                </li>
+                </ul>
+
+            <p class="sub-label">Choose Category Name</p>
+            <ul class="input_admin">
+                <li>
+                <label for="tagCategory">Category:</label>
+                <select id="tagCategory">
+                    <option value="basic-elements">Basic Elements</option>
+                    <option value="document-metadata">Document Metadata</option>
+                    <option value="content-sectioning">Content Sectioning</option>
+                    <option value="text-content">Text Content</option>
+                    <option value="inline-text-semantics">Inline Text Semantics</option>
+                    <option value="image-and-multimedia">Impage and Multimedia</option>
+                    <option value="embedded-content">Embedded Content</option>
+                    <option value="scripting">Scripting</option>
+                    <option value="edits">Edits</option>
+                    <option value="table-content">Table Content</option>
+                    <option value="form">Form</option>
+                    <option value="interactive-elements">Interactive Elements</option>
+                    <option value="web-components">Web Components</option>
+                    <option value="obsolete-and-deprecated-elements">Obsolete and Deprecated Elements</option>
+                </select>
+                <br>
+                <br>
+            </li>
+            </ul>
+            <input type="submit" id="submit_add" name="submit_add" value="Add Tag"><br><br>
+</form>
+        <br><br>
+        <p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Delete Tag</p>
+        <form method="post" onsubmit="delete_tag()">
+            <ul class="input_admin">
+                <li>
+                    <label for="d_tagName">Tag Name:</label>
+                    <input type="text" id="d_tagName" placeholder="br, table, form, etc."><br><br>
+                </li>
+            </ul>
+            <input type="submit" id="submit_delete" name="submit_delete" value="Delete Tag"><br><br>
+        </form>
+        <p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Update Tag</p>
+
+        <form method="get" action="admin_update.html">
+            <ul class="input_admin">
+                <li>
+                    <label for="d_tagName">Tag Name:</label>
+                    <input type="text" id="u_tagName" name="tag" placeholder="br, table, form, etc."><br><br>
+                </li>
+            </ul>
+            <input type="submit" id="submit_update" name="submit_update"><br><br>
+        </form>
+        <script>
+
+
+            var dataRef = new Firebase("https://poweredbycoffee1.firebaseio.com/");
+            var descriptionRef = dataRef.child("description");
+            var browserRef = dataRef.child("browser");
+            var exampleRef = dataRef.child("example");
+            var attributeRef = dataRef.child("attribute");
+            var categoryRef = dataRef.child("category");
+
+            var dataRefd = new Firebase("https://poweredbycoffee1.firebaseio.com/description");
+
+
+            function add_tag() {
+
+                var tagName = $('#tagName').val();
+                var tagDescriptionShort = $('#tagDescriptionShort').val();
+                var tagDescriptionLong = $('#tagDescriptionLong').val();
+                var tagExampleCode = $('#tagExampleCode').val();
+                var tagExampleRaw = $('#tagExampleRaw').val();
+                var tagAttributes = $('#tagAttributes').val();
+                var ieBrowser = $('#ieBrowser').val();
+                var firefoxBrowser = $('#firefoxBrowser').val();
+                var chromeBrowser = $('#chromeBrowser').val();
+                var safariBrowser = $('#safariBrowser').val();
+                var operaBrowser = $('#operaBrowser').val();
+                var tagCategory = $('#tagCategory').val();
+
+
+
+                descriptionRef.child(tagName).set({
+                    short_description: tagDescriptionShort,
+                    long_description: tagDescriptionLong
+                });
+
+                categoryRef.child(tagCategory).push({
+                    name: tagName
+                });
+
+                browserRef.child(tagName).set({
+                    internet_explorer: ieBrowser,
+                    firefox: firefoxBrowser,
+                    chrome: chromeBrowser,
+                    safari: safariBrowser,
+                    opera: operaBrowser
+                });
+
+
+                exampleRef.child(tagName).set({
+                    html_code: tagExampleCode,
+                    html_raw: tagExampleRaw
+                });
+
+                var attributes = tagAttributes.split(',');
+                for (i = 0; i < attributes.length; i++) {
+                    if (attributes[i] == "global") {
+                        var globalA = [
+                                "accesskey",
+                                "class",
+                                "contenteditable",
+                                "contextmenu",
+                                "data-*",
+                                "dir",
+                                "draggable",
+                                "dropzone",
+                                "hidden",
+                                "id",
+                                "lang",
+                                "spellcheck",
+                                "style",
+                                "tabindex",
+                                "title",
+                                "translate",
+                        ];
+
+                        console.log(globalA);
+                        for (j = 0; j < globalA.length; j++) {
+
+                            attributeRef.child(tagName).push({
+                                name: globalA[j]
+                            });
+                        }
+
+                    }
+                    else {
+                        attributeRef.child(tagName).push({
+                            name: attributes[i]
+                        });
+                    }
+
+                }
+                alert("Added " + tagName);
+
+            }
+
+            function delete_tag() {
+                var d_tagName = $('#d_tagName').val();
+
+                descriptionRef.child(d_tagName).set(null);
+                browserRef.child(d_tagName).set(null);
+                exampleRef.child(d_tagName).set(null);
+
+                alert("Deleted " + d_tagName);
+            }
+
+
+            function update_tag() {
+
+                alert("Retrieving data");
+                dataRefd.once("value", function (data) {
+                    var dd = data.val();
+                    console.log(dd.br.long_description);
+                });
+
+                alert("Data Received");
+
+
+            }
+
+
+            /*
+
+             dataRefd.once("value", function(data) {
+             var dd = data.val();
+             console.log(dd.br.long_description);
+             });
+
+             */
+
+        </script>
+        </div>
+    <footer>
+        <hr />
+        <div class="outer_container">
+            <p>
+                Copyright &copy; 2015<a href="404.html"> PoweredByCoffee </a>
+            </p>
+        </div>
+    </footer>
+</body>
+
+</html>
