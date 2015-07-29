@@ -13,6 +13,7 @@ body {
 }
 
 
+
 header {
 	min-height: 51px;
 	width:100%;
@@ -72,6 +73,7 @@ hr {
     border-top: 1px solid #eee;
 }
 
+/* this class add nice fading */
 .fade
 {
         opacity:0.5;
@@ -212,7 +214,6 @@ nav input {
 	overflow: auto;
 }
 
-
 #inner_left_container {
 	height:auto;
 	float:left; 
@@ -248,7 +249,9 @@ nav input {
 }
 #admin_page input[type="text"]:focus, textarea:focus {
   outline: none;
+
 }
+
 .input_admin input[type="text"], textarea{
   padding: 10px;
   border: solid 1px #dcdcdc;
@@ -379,30 +382,6 @@ nav input {
 	border-color: #337ab7;
 }
 
-/* 3 Columns in the inner_right_container */
-
-.columnTags{
-	-webkit-column-count: 3; /* Chrome, Safari, Opera */
-	-moz-column-count: 3; /* Firefox */
-	column-count: 3;
-	-webkit-column-width:15%;
-	-moz-column-width:15%;
-	/* column-width: 15%; */
-	
-	-webkit-column-gap:3%;
-	-moz-column-gap:3%;
-	/* column-gap: 0%; */
-	clear: both;
-}
-
-.three-column{
-	height:80px;
-	font-size:15px;
-} 
-
-.firstItem {
-	margin-top: -6%;
-}
 
 #columnContainer {
 	height: 600px;
