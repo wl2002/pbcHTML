@@ -34,13 +34,13 @@
                         <a style="margin-left:5px;" href="../index.html">Home</a>
                     </li>
                     <li class="active">
-                        <a href="#">Add</a>
+                        <a href="#add_tag_sec">Add</a>
                     </li>
                     <li>
-                        <a href="#">Delete</a>
+                        <a href="#del_tag_sec">Delete</a>
                     </li>
                     <li>
-                        <a href="#">Update</a>
+                        <a href="#update_tag_sec">Update</a>
                     </li>
                     <li>
                         <input style="margin-left:30px;" type="text" id="s_tagName" placeholder="Search" onkeydown="search_by_enter()" />
@@ -58,7 +58,7 @@
         you can also edit a tag that might be incorrect or needs extra information to be added. Also, you can
         to delete a tag from the database.</p>
         <br />
-        <p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Insert New Tag</p>
+        <p id="add_tag_sec" class="top-label" style="box-shadow: 0px 3px 10px #888888;">Insert New Tag</p>
 
         <form method="post" onsubmit="add_tag()">
             <p class="sub-label">Main Info</p>
@@ -177,7 +177,7 @@
             <input type="submit" id="submit_attribute" name="submit_attribute"><br><br>
         </form>
 
-        <p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Delete Tag</p>
+        <p id="del_tag_sec" class="top-label" style="box-shadow: 0px 3px 10px #888888;">Delete Tag</p>
         <form method="post" onsubmit="delete_tag()">
             <ul class="input_admin">
                 <li>
@@ -187,7 +187,7 @@
             </ul>
             <input type="submit" id="submit_delete" name="submit_delete" value="Delete Tag"><br><br>
         </form>
-        <p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Update Tag</p>
+        <p id="update_tag_sec" class="top-label" style="box-shadow: 0px 3px 10px #888888;">Update Tag</p>
 
         <form method="get" action="admin_update.html">
             <ul class="input_admin">
