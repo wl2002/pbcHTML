@@ -1,40 +1,28 @@
+#Homework 4 - Complete Website
 
-# pbcHTML - General Information
-    - URL: http://104.236.148.139/
+Group (PoweredByCoffee) Members:
+
+- Arby Abraamyan (A11027009)
+- Moez Hudda (A11637402)
+- Milad Hanna (A11187441)
+- Noor Bakkal (A11275151)
+- William Lewis (A11484755)
+
+Username and passwords are provided in the submission email. If you cannot access any areas, please email aabraamy@ucsd.edu.
+
+## General Information
+    - URL: http://www.pbcHTML.com
     - Firebase: https://poweredbycoffee1.firebaseio.com/
 
-## Login Information
-    - Text me (arby) for login information to firebase, server, or admin backend.
+## Admin Backend
+    - URL: http://www.pbcHTML.com/admin
 
-## Instructions For Adding Tag Data
-    - Visit http://104.236.148.139/admin/
-    - Login with username & password (ask me for this)
-    - Fill in the first form titled "Insert New Tag"
-    - Click Add Tag!
+    NOTES: The admin backend allows the administrator to add, delete and update tags and attributes.
 
-tag name: Just the name of the tag such as br or table. Don't write &lt;br&gt; or anything like that.
+## IMPORTANT NOTES
 
-tag description: There is a short version and long version. These should be different. The short version will be used on homepage and in filtering tags. The long version will be used in the tag page. 
+Please do not evaluate the website locally. Use the live demo to view the website. We have used apache modules which will clearly not work locally. 
 
-For example (the br tag):
-
-Short Version: Defines a single line break.
-Long Version: The br tag defines a single line break in an HTML document. The tag is considered empty and therefore does not require a closing tag.
-
-Tag Example - There are two fields for this. The first one should be the actual html code for the example (don't include head/body and all that stuff). The next one it the html code formatted for ouput in the browser, so < and > are replaced with &lt; and &gt;. etc.
-
-NOTE: This should be automated. If anyone wants to tackle this feel free! But there are tools out there that do this for you.
-        For example (the br tag):
+The website employs caching to avoid the static dynamic problem. We used native apache modules to employ caching.
 
 
-Attribut section: This should be a comma seperated list. PLEASE only put a comma between attribute names.
-
-Correct: color,bgcolor,id,class
-INCORRECT: color, bgcolor, id, class
-
-If you want to include the GLOBAL attributes as specified on w3school, just write global as one of the attributes. All lowercase. It will automatically expand.
-
-Browser Support section. Write Yes if supported or first version number to support the tag if all versions of the browser do not support the tag.
-
-
-IF YOU MAKE A MISTAKE: type the tag name in the update section, click submit, fix the mistake, click add tag and it will overwrite your submission. The update page should automatically fill in all the current data in the DB for the tag you chose. if it doesn't wait like 5 seconds.
