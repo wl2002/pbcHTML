@@ -1,3 +1,15 @@
+
+/* Print friendly function */
+function printpage()
+{
+	var originalContents = document.body.innerHTML;
+	var printReport = document.getElementById('inner_right_container').innerHTML;
+	document.body.innerHTML = printReport;
+	document.body.innerHTML += ("<br /><br /><p>Copyright 2015 PoweredByCoffee - http://pbcHTML.com </p>")
+	window.print();
+	document.body.innerHTML = originalContents;
+}
+
 /* add the contents of the tag page */
 function addCode(tagName) {
 	
@@ -5,7 +17,6 @@ function addCode(tagName) {
 	/* add code to the tag page */
 	var nameRef = new Firebase("https://poweredbycoffee1.firebaseio.com/example");
 	nameRef.child(tagName).on("value", function(tag) {
-		console.log("added", tag.val().html_code); // ettesssssssssssssssssssssssssssssttt
 		
 		var rawCode = tag.val().html_raw;
 		var resCode = tag.val().html_code;
@@ -24,10 +35,6 @@ function addCode(tagName) {
 	desRef.once("value", function(tags) {
 	
 		var tagDescription = tags.val().long_description;
-		
-		console.log("added", tags.val().long_description);
-
-
 		var tagDescriptionDiv = document.getElementById("description");
 		tagDescriptionDiv.innerHTML += (tagDescription);
 	});
@@ -38,10 +45,7 @@ function addCode(tagName) {
 	var attRef = new Firebase("https://poweredbycoffee1.firebaseio.com/attribute/" + tagName);
 	attRef.on("child_added", function(tags) {
 	
-	populateAtt(tags.val().name,"short_description");
-  
-	console.log("added attribute", tags.val().name);
-	
+	populateAtt(tags.val().name,"short_description");	
 	});
 
 	/* add browser to the tag page */
@@ -49,8 +53,6 @@ function addCode(tagName) {
 	//delRow();
 	var broRef = new Firebase("https://poweredbycoffee1.firebaseio.com/browser/" + tagName);
 	broRef.on("value", function(tags) {
-
-	console.log("added browser", tags.val());
 
 	var chrome = document.getElementById("chrome");
 	chrome.innerHTML += (tags.val().chrome);
@@ -86,16 +88,12 @@ var table = document.getElementById('addBody');
 	
 	cell1.appendChild(textnode1);
 	cell2.appendChild(textnode2);
-	
+
 	row.onclick = function () { 
 		window.location.href = "http://104.236.148.139/tags/" + tagName;
 	};
-	
-	row.appendChild(cell1);
-	row.appendChild(cell2);
-	
-	table.appendChild(row);
- 
- 
-        }
 
+	row.appendChild(cell1);
+	row.appendChild(cell2);	
+	table.appendChild(row);
+}

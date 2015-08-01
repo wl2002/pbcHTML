@@ -12,6 +12,17 @@ function findByIndex (letter) {
 return false;
 }
 
+function findByName (name) {
+    delRow();
+    console.log(name);
+    var refs = new Firebase("https://poweredbycoffee1.firebaseio.com/description");
+    refs.orderByKey().startAt(name).endAt(name+"~").on("child_added", function(data) {
+        console.log(data.key());
+        
+        populatData(data.key(), data.val().short_description);
+    });
+}
+
 function addCategory(category) {
 
 	var nameRef = new Firebase("https://poweredbycoffee1.firebaseio.com/category");

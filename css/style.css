@@ -12,8 +12,6 @@ body {
     width: 100%;
 }
 
-
-
 header {
 	min-height: 51px;
 	width:100%;
@@ -40,6 +38,8 @@ section {
 
 table {
     width:95%;
+	-moz-box-shadow: 2px 0px 6px #888888;
+	-webkit-box-shadow: 2px 0px 6px #888888;
 	box-shadow: 2px 0px 6px #888888;
 }
 table, th, td {
@@ -98,7 +98,7 @@ pre {
     white-space: -o-pre-wrap;
     word-wrap: break-word;
     border-left: 5px solid #855085;	
-	background-color: #EFF5F5;
+	background-color: white; /*#EFF5F5; */
 	box-shadow: 2px 0px 6px #888888;
 }
 
@@ -168,7 +168,7 @@ nav input {
 	background-color: #fff;
 	background-image: none;
 	border: 1px solid #ccc;
-	border-radius: 4px;
+	border-radius: 0px;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
@@ -184,17 +184,40 @@ nav input {
 	font-size:18px;
 }
 
+
+button {
+    background: #337AB6;
+    color: #fff;
+    font-size: 13px;
+    height: 40px;
+    width: 100px;
+    text-align: center;
+    border: 0;
+    transition: all 0.3s ease 0s;
+}
+
+button:hover {
+  background: #9C8BF7;
+  cursor: pointer;
+}
+
 .goButton {
-    width:50px; 
-    height:50px;
-	background-color:white;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
-	border: 0;
-	-moz-box-shadow:inset 0 0 5px #888888;
-	-webkit-box-shadow: inset 0 0 5px #888888;
-	box-shadow:inset 0 0 5px #888888;
+    background: #337AB6;
+    font-family:Serif;
+    color: #fff;
+    font-size: 15px;
+    padding-left:10px;
+    height: 30px;
+    width: 60px;
+    text-align: center;
+    border: 0;
+    transition: all 0.3s ease 0s;
+}
+
+
+.goButton:hover {
+    background: #9C8BF7;
+    cursor: pointer;
 }
 
 .nav_container {
@@ -205,6 +228,13 @@ nav input {
 	width: auto;
 }
 
+#adjust {
+	font-size:16px;
+	line-height:16px;
+}
+
+
+
 .outer_container {
 	margin-left: auto;
 	margin-right: auto;
@@ -212,6 +242,7 @@ nav input {
 	max-width: 1200px;
 	height: auto;
 	overflow: auto;
+	
 }
 
 #inner_left_container {

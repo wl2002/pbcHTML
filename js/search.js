@@ -9,15 +9,50 @@ dataRefd.on("value", function(snapshot) {
 });
 
 /* add the enter button to the search bar */
-function search_by_enter(){
+/*function search_by_enter(){
     if (event.keyCode == 13) 
         document.getElementById('searchBut').click()
-}
+}*/
 
 /* call this function when the user entered a text in the search bar */
 var tagResult =[];
 var desResult =[];
+$(document).ready(function() {
+/*function search_tag() { */
+    var client = algoliasearch('DXIF1WHF9E', '4d30260fed9231bfee6ce07052ade462');
+    var index = client.initIndex('prod_list');
+    var $input = $('input');
+    $input.keyup(function() {
+        index.search($input.val(), {
+            hitsPerPage: 10,
+            facets: '*'
+        }, searchCallBack);
+    }).focus();
+});
+
+function searchCallBack(err, content) {
+    if (err) {
+        console.err(err);
+        return;
+    }
+    var $users = $('#searchResults');
+    $users.empty();
+    for (var i = 0; i < content.hits.length; i++) {
+        $users.append('<li>' + content.hits[i].name + '</li>');
+    }
+};
+
 function search_tag() {
+	var s_tagName = document.getElementById("s_tagName").value;
+	window.location.href = "http://104.236.148.139/tags/" + s_tagName;
+	/* findByName(s_tagName); */
+}
+
+	
+
+/* Commenting out old code
+----------------
+    function search_tag() {
 
 	var s_tagName = document.getElementById("s_tagName").value;
 
@@ -34,7 +69,7 @@ function search_tag() {
 		  count++;
     
 	
-	});
+	}); 
 
 	found2.document.write("<h2>Check the following result:</h2>");  
 	found2.document.write("<h5>Found: " +count + " results");
@@ -45,6 +80,8 @@ function search_tag() {
 	found2.document.write("<h5>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ desResult[i] );
   }
 
+----------------
+*/
 
   /* this code is working fine but it searchs for the tag only ---note: need to force lowercase on it */
 	/*var s_tagName = document.getElementById("s_tagName").value;
@@ -67,4 +104,4 @@ function search_tag() {
 	});    
 
 */
-}
+//}
