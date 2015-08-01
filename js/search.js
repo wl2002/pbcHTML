@@ -44,7 +44,7 @@ function searchCallBack(err, content) {
 
 function search_tag() {
 	var s_tagName = document.getElementById("s_tagName").value;
-	window.location.href = "http://104.236.148.139/tags/" + s_tagName;
+	window.location.href = "http://www.pbcHTML.com/tags/" + s_tagName;
 	/* findByName(s_tagName); */
 }
 

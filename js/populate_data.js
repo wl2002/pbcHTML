@@ -69,7 +69,7 @@ function populatData(tagName,TagDes)
 	cell2.appendChild(textnode2);
 	
 	row.onclick = function () { 
-		window.location.href = "http://104.236.148.139/tags/" + tagName;
+		window.location.href = "http://www.pbcHTML.com/tags/" + tagName;
 	};
 	
 	row.appendChild(cell1);
