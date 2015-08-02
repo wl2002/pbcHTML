@@ -17,12 +17,8 @@ Username and passwords are provided in the submission email. If you cannot acces
 ## Admin Backend
     - URL: http://www.pbcHTML.com/admin
 
-    NOTES: The admin backend allows the administrator to add, delete and update tags and attributes.
+NOTES: The admin backend allows the administrator to add, delete and update tags and attributes.
 
 ## IMPORTANT NOTES
 
 Please do not evaluate the website locally. Use the live demo to view the website. We have used apache modules which will clearly not work locally. 
-
-The website employs caching to avoid the static dynamic problem. We used native apache modules to employ caching.
-
-
