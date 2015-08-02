@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+      <title>Admin_Update</title>
+      <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
+      <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+      <script src="../js/search.js" type="text/javascript"></script>
+      <script src="js_admin/admin_functions.js" type="text/javascript"></script>
+
+      <link href="../css/style.css" rel="stylesheet" />
+      <link rel="shortcut icon" href="../img/icon2.ico" />
+
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="description" content="HTML Reference Website" />
+      <meta name="author" content="PoweredByCoffee" />
+
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script>
+
+      window.onload = function() {
+          var queryString = window.location.search;
+          var start = queryString.indexOf("=");
+          var end = queryString.indexOf("&");
+          var tag = queryString.slice(start + 1, end);
+          load_attribute_info(tag);
+      }
+      
+    </script>
+
+    </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav_container">
+          <ul>
+            <li class="logo">
+              <a href="index.html">Administrative Dashboard</a>
+            </li>
+            <li>
+              <a style="margin-left:5px;" href="../index.html">Home</a>
+            </li>
+            <li>
+              <a style="margin-left:5px;" href="index.html">Tags</a>
+            </li>
+            <li>
+              <a style="margin-left:5px;" href="attributes.html">Attributes</a>
+            </li>
+            <li>
+              <input style="margin-left:30px;" type="text" id="s_tagName" placeholder="Search" onkeydown="search_by_enter()" />
+              <input type="button" class="goButton" value="Go" onclick="search_tag()" />
+            </li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </nav>
+    </header>
+
+    <div class="outer_container" id="admin_page">
+      <p class="top-label" style="box-shadow: 0px 3px 10px #888888;">Update Tag</p>
+      <br />
+      <br />
+      <!--<h2 style="box-shadow:0 0 5px #5f5f5f; ">Main Info</h2>-->
+      <p class="sub-label">Main Info</p>
+          <form method="post" onsubmit="add_attribute()">
+            <ul class="input_admin">
+              <li>
+                <label for="attributeName">Attribute Name:</label>
+                <input type="text" id="attributeName" name="attributeName" placeholder="accesskey, color, bgcolor">
+                  <br>
+                    <br>
+
+                      <label for="attributeDescription">Description:</label>
+                      <input type="text" id="attributeDescription" name="attributeDescription" placeholder="Description here">
+                        <br>
+                          <br>
+
+              </li>
+            </ul>
+            <button type="submit" id="submit_attribute" name="submit_attribute" >Add Attribute</button>
+            <!--<input type="submit" id="submit_attribute" name="submit_attribute">-->
+              <br>
+                <br>
+
+          </form>
+     
+    </div>
+    <br>
+      <br>
+        <footer>
+          <hr />
+          <div class="outer_container">
+            <p>
+              Copyright &copy; 2015<a href="404.html"> PoweredByCoffee </a>
+            </p>
+          </div>
+        </footer>
+
+      </body>
+</html>

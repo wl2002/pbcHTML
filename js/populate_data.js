@@ -1,11 +1,16 @@
+/*
+ * File: populate_data.js
+ * This file for populating the data from firebase into the page of index and other pages. 
+ * Created by: Powered By Coffee
+ * Modified by:
+ */
+
 /* Function to find tags by passing a specific letter */
 function findByIndex (letter) {
 	
 	delRow();
 	var refs = new Firebase("https://poweredbycoffee1.firebaseio.com/description");
 	refs.orderByKey().startAt(letter).endAt(letter + "~").on("child_added", function(data) {
-		console.log(data.key());
-
 		populatData(data.key(),data.val().short_description);
 	});
 
@@ -14,11 +19,8 @@ return false;
 
 function findByName (name) {
     delRow();
-    console.log(name);
     var refs = new Firebase("https://poweredbycoffee1.firebaseio.com/description");
     refs.orderByKey().startAt(name).endAt(name+"~").on("child_added", function(data) {
-        console.log(data.key());
-        
         populatData(data.key(), data.val().short_description);
     });
 }
@@ -27,13 +29,11 @@ function addCategory(category) {
 
 	var nameRef = new Firebase("https://poweredbycoffee1.firebaseio.com/category");
 	nameRef.child(category).on("child_added", function(tag) {
-		console.log("added", tag.val().name);
-
+	
 		var tags = tag.val().name;
 		
 		var desRef = new Firebase("https://poweredbycoffee1.firebaseio.com/description/" + tags);
 		desRef.once("value", function(des) {
-			console.log(des.val().short_description);	
 			populatData(tags, des.val().short_description);		
 		
 		}); 

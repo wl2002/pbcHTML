@@ -1,3 +1,10 @@
+/*
+ * File: adjustTextSize.js
+ * This file for adjusting the size of text in the right body contanier 
+ * Created by: Powered By Coffee
+ * Modified by:
+ */
+
 var tt_size = 16;
 var tt_lh = 16;
 function a_inc()

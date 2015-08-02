@@ -1,3 +1,9 @@
+/*
+ * File: populate_tags.js
+ * This file for populating the data from firebase into the page of tags. 
+ * Created by: Powered By Coffee
+ * Modified by:
+ */
 
 /* Print friendly function */
 function printpage()
@@ -43,9 +49,15 @@ function addCode(tagName) {
 
 	//delRow();
 	var attRef = new Firebase("https://poweredbycoffee1.firebaseio.com/attribute/" + tagName);
-	attRef.on("child_added", function(tags) {
-	
-	populateAtt(tags.val().name,"short_description");	
+	attRef.on("child_added", function(att) {
+		var attName = att.val().name;
+		var attDesRef = new Firebase("https://poweredbycoffee1.firebaseio.com/attribute_description/" + attName )
+		attDesRef.once("child_added", function(attDes) {
+		if (attName == "") { return;}
+			else{
+				populateAtt(attName,attDes.val(),attName);	
+			}
+		});
 	});
 
 	/* add browser to the tag page */
@@ -73,26 +85,19 @@ function addCode(tagName) {
 	document.getElementById("changeTagName").innerHTML = ("&lt;"+ tagName + "&gt;");
 		
 	});
-
 }
-
-function populateAtt(in1,in2) {
+function populateAtt(in1,in2, attName) {
 var table = document.getElementById('addBody');
- 
     row = document.createElement("tr");
 	cell1 = document.createElement("td");
 	cell2 = document.createElement("td");
-
 	textnode1 = document.createTextNode(in1);
 	textnode2 = document.createTextNode(in2);
-	
 	cell1.appendChild(textnode1);
 	cell2.appendChild(textnode2);
-
 	row.onclick = function () { 
-		window.location.href = "http://www.pbcHTML.com/tags/" + tagName;
+		window.location.href = "http://www.pbcHTML.com/attributes/" + attName;
 	};
-
 	row.appendChild(cell1);
 	row.appendChild(cell2);	
 	table.appendChild(row);

@@ -1,5 +1,6 @@
 var dataRef = new Firebase("https://poweredbycoffee1.firebaseio.com/");
 var descriptionRef = dataRef.child("description");
+var attributeDescriptionRef = dataRef.child("attribute_description");
 var browserRef = dataRef.child("browser");
 var exampleRef = dataRef.child("example");
 var attributeRef = dataRef.child("attribute");
@@ -13,6 +14,22 @@ function add_attribute() {
 
     attributeDescriptionRef.child(attributeName).set({
         description: attributeDescription
+    });
+}
+
+function delete_attribute() {
+
+    var d_attributeName = $('#d_attributeName').val();
+    attributeDescriptionRef.child(d_attributeName).once("value", function (snapshot) {
+        if (snapshot.val() === null) {
+            alert("This attribute: " + d_attributeName + " does not exist!")
+        }
+        else {
+            if (confirm('Do you want to delete this attribute: ' + d_attributeName + '?')) {
+		attributeDescriptionRef.child(d_attributeName).set(null);
+                alert("Deleted " + d_attributeName);
+            }
+        }
     });
 }
 
@@ -116,6 +133,21 @@ function delete_tag() {
     });
 }
 
+function load_attribute_info(attribute) {
+    var attributeDescriptionRef_l = attributeDescriptionRef.child(attribute);
+
+    attributeDescriptionRef_l.once("value", function(snapshot) {
+        var data = snapshot.val();
+
+        field = document.getElementById("attributeName");
+        field.value = attribute;
+
+        field = document.getElementById("attributeDescription");
+        field.value = data.description;
+	console.log(data.description);
+    });
+}
+
 function load_tag_info(tag) {
     var descriptionRef_l = descriptionRef.child(tag);
     var browserRef_l = browserRef.child(tag);
@@ -159,7 +191,7 @@ function load_tag_info(tag) {
 
     });
 
-    categoryRef.once("value", function(snapshot) {
+    categoryRef_l.once("value", function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             childSnapshot.forEach(function(childchildSnapshot) {
 
@@ -173,7 +205,7 @@ function load_tag_info(tag) {
         });
     });
 
-    browserRef.once("value", function(snapshot) {
+    browserRef_l.once("value", function(snapshot) {
 
         var data = snapshot.val();
 
